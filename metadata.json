@@ -1,0 +1,6 @@
+{
+  "name": "CocoVenus Landing Page",
+  "description": "High-converting modern Vietnamese beauty e-commerce landing page for CocoVenus by Thorakao.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
