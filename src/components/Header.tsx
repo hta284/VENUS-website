@@ -1,113 +1,87 @@
-import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, Sparkles } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { cartItems, setCartOpen } = useCart();
+
+  const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? "glass shadow-lg py-3 border-b border-brand-border/50" 
-          : "bg-transparent py-6"
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-brand-cream/95 backdrop-blur-sm shadow-sm py-3' : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer group">
-          <div className="w-10 h-10 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full flex items-center justify-center shadow">
-            <Sparkles className="w-5 h-5 text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-serif text-xl md:text-2xl font-bold tracking-wider text-brand-primary group-hover:text-brand-primary-dark transition-colors">
-              CocoVenus
-            </span>
-            <span className="text-xs text-brand-text-muted font-medium tracking-widest uppercase">
-              Beauty Essentials
-            </span>
-          </div>
+        <div className="flex flex-col items-center cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <span className="font-serif text-2xl md:text-3xl font-bold tracking-widest text-brand-green group-hover:text-brand-green-light transition-colors">
+            VENUS
+          </span>
+          <span className="h-0.5 w-12 bg-brand-green mt-1 rounded group-hover:w-full transition-all duration-300"></span>
         </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {[
-            { label: "S?n Ph?m", href: "#products" },
-            { label: "CÙng D?ng", href: "#benefits" },
-            { label: "C‚u Chuy?n", href: "#heritage" },
-            { label: "–·nh Gi·", href: "#reviews" }
-          ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-brand-text hover:text-brand-primary transition-colors relative group"
-            >
-              {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-primary group-hover:w-full transition-all duration-300" />
-            </a>
-          ))}
+          <a href="#products" className="text-sm font-medium hover:text-brand-green transition-colors">S·∫£n Ph·∫©m</a>
+          <a href="#benefits" className="text-sm font-medium hover:text-brand-green transition-colors">C√¥ng D·ª•ng</a>
+          <a href="#heritage" className="text-sm font-medium hover:text-brand-green transition-colors">C√¢u Chuy·ªán</a>
         </nav>
 
         {/* CTA & Mobile Toggle */}
-        <div className="flex items-center gap-4">
-          <a
-            href="#products"
-            className="hidden md:flex items-center gap-2 bg-gradient-to-r from-brand-primary to-brand-primary-dark hover:from-brand-primary-dark hover:to-brand-primary text-white px-6 py-2.5 rounded-full font-medium shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-2 transform"
+        <div className="flex items-center gap-3">
+          {/* Main Cart Button */}
+          <button 
+            onClick={() => setCartOpen(true)}
+            className="flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-5 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 relative cursor-pointer"
           >
             <ShoppingBag className="w-4 h-4" />
-            <span>Mua Ngay</span>
-          </a>
-          <button
-            className="md:hidden p-2 text-brand-primary hover:bg-brand-background rounded-full transition-colors"
+            <span className="hidden sm:inline">Gi·ªè H√†ng</span>
+            {totalQuantity > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-brand-gold text-brand-brown w-5.5 h-5.5 rounded-full flex items-center justify-center font-bold text-xs shadow border border-white animate-scale-up">
+                {totalQuantity}
+              </span>
+            )}
+          </button>
+          
+          <button 
+            className="md:hidden p-2 text-brand-green"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {mobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 glass border-t border-brand-border shadow-lg py-4 px-4 flex flex-col gap-3 animate-fade-in-up">
-          {[
-            { label: "S?n Ph?m", href: "#products" },
-            { label: "CÙng D?ng", href: "#benefits" },
-            { label: "C‚u Chuy?n", href: "#heritage" },
-            { label: "–·nh Gi·", href: "#reviews" }
-          ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="block py-2.5 text-sm font-medium text-brand-text hover:text-brand-primary border-b border-brand-border/20 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
-          <a
-            href="#products"
-            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-brand-primary to-brand-primary-dark text-white px-6 py-3 rounded-full font-medium mt-2 shadow-md hover:shadow-lg transition-all"
-            onClick={() => setMobileMenuOpen(false)}
+        <div className="md:hidden absolute top-full left-0 right-0 bg-brand-cream border-t border-brand-green/10 shadow-lg py-4 px-4 flex flex-col gap-4">
+          <a href="#products" className="block py-2 text-sm font-medium border-b border-brand-green/10" onClick={() => setMobileMenuOpen(false)}>S·∫£n Ph·∫©m</a>
+          <a href="#benefits" className="block py-2 text-sm font-medium border-b border-brand-green/10" onClick={() => setMobileMenuOpen(false)}>C√¥ng D·ª•ng</a>
+          <a href="#heritage" className="block py-2 text-sm font-medium border-b border-brand-green/10" onClick={() => setMobileMenuOpen(false)}>C√¢u Chuy·ªán</a>
+          <button 
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setCartOpen(true);
+            }}
+            className="flex items-center justify-center gap-2 w-full bg-brand-green text-white px-6 py-3 rounded-full font-medium mt-2 cursor-pointer"
           >
             <ShoppingBag className="w-4 h-4" />
-            Mua Ngay
-          </a>
+            Xem Gi·ªè H√†ng ({totalQuantity})
+          </button>
         </div>
       )}
     </header>
   );
 }
-
-

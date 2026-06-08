@@ -1,167 +1,125 @@
-import { Star, ShoppingCart, Heart } from "lucide-react";
-
-const productData = [
-  {
-    id: 1,
-    name: "Vitamin C Brightening Serum",
-    price: 599000,
-    originalPrice: 799000,
-    image: "??",
-    rating: 4.9,
-    reviews: 285,
-    badge: "Best Seller",
-    description: "Serum l�m s�ng da ch?a Vitamin C tinh khi?t"
-  },
-  {
-    id: 2,
-    name: "Hydra Boost Moisturizer",
-    price: 749000,
-    originalPrice: 949000,
-    image: "??",
-    rating: 4.8,
-    reviews: 192,
-    badge: "Recommended",
-    description: "Kem du?ng ?m s�u cho da kh�"
-  },
-  {
-    id: 3,
-    name: "Anti-Aging Night Cream",
-    price: 899000,
-    originalPrice: 1199000,
-    image: "?",
-    rating: 4.9,
-    reviews: 156,
-    badge: "Premium",
-    description: "Kem d�m ch?ng l�o h�a cao c?p"
-  },
-  {
-    id: 4,
-    name: "Pore Minimizing Toner",
-    price: 499000,
-    originalPrice: 649000,
-    image: "??",
-    rating: 4.7,
-    reviews: 124,
-    badge: "Popular",
-    description: "Nu?c hoa h?ng se kh�t l? ch�n l�ng"
-  }
-];
+import { ShoppingCart, ShieldCheck } from 'lucide-react';
+import { motion } from 'motion/react';
+import { useCart, productsList } from '../context/CartContext';
 
 export default function Products() {
+  const { addToCart } = useCart();
+  
+  const shampooObj = productsList.find(p => p.id === 'shampoo')!;
+  const bundleObj = productsList.find(p => p.id === 'bundle')!;
+  const conditionerObj = productsList.find(p => p.id === 'conditioner')!;
+
   return (
-    <section id="products" className="py-20 md:py-32 bg-gradient-to-b from-brand-background to-white">
+    <section id="products" className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="inline-block glass px-4 py-2 rounded-full text-sm font-medium text-brand-primary mb-4 border border-brand-primary/20">
-            S?n Ph?m N?i B?t
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-text mb-4">
-            B? Suu T?p Cham S�c Da
-            <span className="block bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-              Ho�n H?o
-            </span>
-          </h2>
-          <p className="text-lg text-brand-text-muted max-w-2xl mx-auto mt-6">
-            M?i s?n ph?m du?c ch?n l?c k? lu?ng d? mang d?n hi?u qu? t?t nh?t cho l�n da c?a b?n.
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Dòng Sản Phẩm CocoVenus</h2>
+          <p className="text-brand-brown/70 max-w-2xl mx-auto text-lg">
+            Sự kết hợp hoàn hảo giữa Dầu Dừa Bến Tre và Tinh Dầu Bưởi giúp chăm sóc tóc toàn diện.
           </p>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {productData.map((product, index) => (
-            <div
-              key={product.id}
-              className="group relative"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Card */}
-              <div className="h-full glass rounded-2xl overflow-hidden border border-brand-border transition-all duration-300 hover:shadow-lg hover:-translate-y-2 shadow transition-all duration-300">
-                {/* Header with Badge */}
-                <div className="relative overflow-hidden bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 p-4 pt-6">
-                  {product.badge && (
-                    <div className="absolute top-3 right-3">
-                      <span className="inline-block bg-gradient-to-r from-brand-primary to-brand-secondary text-white text-xs font-bold px-3 py-1 rounded-full">
-                        {product.badge}
-                      </span>
-                    </div>
-                  )}
-                  
-                  {/* Image Placeholder */}
-                  <div className="flex justify-center mb-4">
-                    <div className="w-20 h-20 bg-white/50 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform duration-300">
-                      {product.image}
-                    </div>
-                  </div>
-
-                  {/* Like Button */}
-                  <button className="absolute top-3 left-3 p-2 rounded-full bg-white/20 hover:bg-white/40 text-brand-primary transition-all duration-300 backdrop-blur-sm">
-                    <Heart className="w-4 h-4" />
-                  </button>
-                </div>
-
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="font-semibold text-brand-text mb-2 group-hover:text-brand-primary transition-colors">
-                    {product.name}
-                  </h3>
-                  <p className="text-xs text-brand-text-muted mb-4 line-clamp-2">
-                    {product.description}
-                  </p>
-
-                  {/* Rating */}
-                  <div className="flex items-center gap-1 mb-4">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-4 h-4 ${
-                            i < Math.floor(product.rating)
-                              ? "fill-brand-accent text-brand-accent"
-                              : "text-brand-border"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-xs font-medium text-brand-text">
-                      {product.rating} ({product.reviews})
-                    </span>
-                  </div>
-
-                  {/* Price */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-lg font-bold text-brand-primary">
-                      {product.price.toLocaleString("vi-VN")}?
-                    </span>
-                    <span className="text-sm text-brand-text-muted line-through opacity-60">
-                      {product.originalPrice.toLocaleString("vi-VN")}?
-                    </span>
-                  </div>
-
-                  {/* CTA Button */}
-                  <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-brand-primary to-brand-primary-dark hover:from-brand-primary-dark hover:to-brand-primary text-white py-3 rounded-lg font-medium shadow-md group-hover:shadow-lg transition-all duration-300 transform">
-                    <ShoppingCart className="w-4 h-4" />
-                    <span>Th�m V�o</span>
-                  </button>
+        <div className="grid md:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+          {/* Card 1 */}
+          <motion.div 
+            whileHover={{ y: -8 }}
+            className="bg-brand-cream/30 rounded-2xl p-6 md:p-8 border border-brand-green/10 flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all"
+          >
+            <div className="w-full aspect-[4/5] bg-gradient-to-b from-brand-green/20 to-brand-green/5 rounded-xl mb-6 relative flex items-center justify-center p-8">
+              <div className="w-24 h-48 bg-gradient-to-t from-brand-green to-brand-green-light rounded-t-2xl rounded-b-lg border-2 border-brand-green-dark/20 shadow-lg relative">
+                <div className="absolute top-0 -mt-6 w-8 h-12 bg-zinc-800 rounded-t-md mx-auto left-0 right-0"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] aspect-square bg-brand-cream rounded flex items-center justify-center p-1 border border-brand-green/30">
+                  <span className="font-serif text-[10px] uppercase font-bold text-brand-green">Dầu Gội</span>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+            <h3 className="font-serif text-2xl font-bold mb-2">{shampooObj.name}</h3>
+            <p className="text-brand-brown/70 mb-4 px-4 h-12 line-clamp-2">{shampooObj.description}</p>
+            <div className="text-sm border-t border-b border-brand-green/10 py-3 w-full mb-6">
+              <span className="font-medium text-brand-green">Thành phần:</span> {shampooObj.ingredients}
+            </div>
+            <div className="text-2xl font-bold mb-6 text-brand-green">{shampooObj.price.toLocaleString('vi-VN')} ₫</div>
+            <button 
+              onClick={() => addToCart(shampooObj)}
+              className="w-full bg-brand-green text-white hover:bg-brand-green-dark py-3 rounded-full font-medium transition-colors flex items-center justify-center gap-2 mt-auto cursor-pointer"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              Thêm vào giỏ
+            </button>
+          </motion.div>
 
-        {/* View All Button */}
-        <div className="text-center mt-12">
-          <a
-            href="#products"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-brand-primary text-brand-primary hover:bg-brand-primary/10 font-semibold transition-all duration-300"
+          {/* Bundle */}
+          <motion.div 
+            initial={{ scale: 0.95 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -8 }}
+            className="bg-brand-cream rounded-2xl p-6 md:p-8 border-2 border-brand-gold relative flex flex-col items-center text-center shadow-2xl z-10 before:absolute before:-inset-[2px] before:rounded-2xl before:border-2 before:border-brand-gold/30 before:animate-ping before:pointer-events-none"
           >
-            <span>Xem T?t C? S?n Ph?m</span>
-            <span className="text-lg">?</span>
-          </a>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-gold text-white px-6 py-1.5 rounded-full font-bold text-sm shadow-md whitespace-nowrap">
+              {bundleObj.badge}
+            </div>
+            
+            <div className="w-full aspect-[4/5] bg-gradient-to-b from-brand-gold/10 to-transparent rounded-xl mb-6 relative flex items-center justify-center px-4">
+              <div className="flex gap-2">
+                <div className="w-20 h-40 bg-gradient-to-t from-brand-green to-brand-green-light rounded-t-2xl rounded-b-lg border-2 border-brand-green-dark/20 shadow-lg relative transform -rotate-6">
+                  <div className="absolute top-0 -mt-5 w-6 h-10 bg-zinc-800 rounded-t-md mx-auto left-0 right-0"></div>
+                </div>
+                <div className="w-20 h-36 bg-gradient-to-t from-brand-green to-brand-green-light rounded-t-2xl rounded-b-lg border-2 border-brand-green-dark/20 shadow-lg relative transform mt-4 rotate-6 z-10">
+                  <div className="absolute top-0 -mt-5 w-6 h-8 bg-brand-cream border border-black/10 rounded-t-md mx-auto left-0 right-0"></div>
+                </div>
+              </div>
+            </div>
+            
+            <h3 className="font-serif text-2xl font-bold mb-2">{bundleObj.name}</h3>
+            <p className="text-brand-brown/70 mb-4 px-4 h-12 flex items-center justify-center">{bundleObj.description}</p>
+            
+            <div className="flex flex-col items-center w-full mb-6">
+              <span className="text-gray-400 line-through text-sm">{bundleObj.originalPrice?.toLocaleString('vi-VN')} ₫</span>
+              <div className="text-3xl font-bold text-brand-green">{bundleObj.price.toLocaleString('vi-VN')} ₫</div>
+            </div>
+            
+            <button 
+              onClick={() => addToCart(bundleObj)}
+              className="w-full bg-brand-gold text-brand-brown hover:bg-yellow-500 py-3.5 rounded-full font-bold transition-colors flex items-center justify-center gap-2 mt-auto shadow-md cursor-pointer"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              Mua Combo Ngay
+            </button>
+            <div className="mt-3 text-xs text-brand-brown/60 flex items-center justify-center gap-1">
+              <ShieldCheck className="w-3 h-3" /> Cam kết chính hãng 100%
+            </div>
+          </motion.div>
+
+          {/* Card 2 */}
+          <motion.div 
+            whileHover={{ y: -8 }}
+            className="bg-brand-cream/30 rounded-2xl p-6 md:p-8 border border-brand-green/10 flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all"
+          >
+            <div className="w-full aspect-[4/5] bg-gradient-to-b from-brand-green/20 to-brand-green/5 rounded-xl mb-6 relative flex items-center justify-center p-8">
+              <div className="w-24 h-40 bg-gradient-to-t from-brand-green to-brand-green-light rounded-t-2xl rounded-b-lg border-2 border-brand-green-dark/20 shadow-lg relative mt-8">
+                <div className="absolute top-0 -mt-5 w-8 h-10 w-12 bg-brand-cream rounded-t-md mx-auto left-0 right-0 border border-black/10"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] aspect-square bg-brand-cream rounded flex items-center justify-center p-1 border border-brand-green/30">
+                  <span className="font-serif text-[10px] uppercase font-bold text-brand-green">Dầu Xả</span>
+                </div>
+              </div>
+            </div>
+            <h3 className="font-serif text-2xl font-bold mb-2">{conditionerObj.name}</h3>
+            <p className="text-brand-brown/70 mb-4 px-4 h-12 line-clamp-2">{conditionerObj.description}</p>
+            <div className="text-sm border-t border-b border-brand-green/10 py-3 w-full mb-6">
+              <span className="font-medium text-brand-green">Thành phần:</span> {conditionerObj.ingredients}
+            </div>
+            <div className="text-2xl font-bold mb-6 text-brand-green">{conditionerObj.price.toLocaleString('vi-VN')} ₫</div>
+            <button 
+              onClick={() => addToCart(conditionerObj)}
+              className="w-full bg-brand-green text-white hover:bg-brand-green-dark py-3 rounded-full font-medium transition-colors flex items-center justify-center gap-2 mt-auto cursor-pointer"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              Thêm vào giỏ
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-
-

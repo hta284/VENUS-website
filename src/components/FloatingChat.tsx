@@ -1,80 +1,27 @@
-import { MessageCircle, X } from "lucide-react";
-import { useState } from "react";
+import { MessageCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function FloatingChat() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { type: "bot", text: "Ch‡o! CÛ gÏ tÙi cÛ th? gi˙p b?n?" }
-  ]);
-  const [input, setInput] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
 
-  const handleSend = () => {
-    if (input.trim()) {
-      setMessages([...messages, { type: "user", text: input }]);
-      setInput("");
-      setTimeout(() => {
-        setMessages(prev => [...prev, { type: "bot", text: "C?m on b?n! Ch˙ng tÙi s? tr? l?i s?m nh?t." }]);
-      }, 1000);
-    }
-  };
+  useEffect(() => {
+    // Show chat bubble after a short delay
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isVisible) return null;
 
   return (
-    <>
-      {/* Chat Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-r from-brand-primary to-brand-primary-dark text-white shadow-lg hover:shadow-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-2 z-40 flex items-center justify-center"
-      >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
+      <div className="bg-white p-3 rounded-2xl rounded-br-none shadow-xl border border-brand-green/10 text-sm max-w-[200px] hidden md:block animate-bounce" style={{animationDuration: '3s'}}>
+        Xin ch√†o! üëã C·∫ßn t∆∞ v·∫•n ch·ªçn s·∫£n ph·∫©m ph√π h·ª£p?
+      </div>
+      <button className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg hover:bg-green-600 transition-transform hover:scale-110">
+        <MessageCircle className="w-7 h-7" />
       </button>
-
-      {/* Chat Window */}
-      {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-32px)] glass rounded-2xl border border-brand-border shadow-lg animate-fade-in-up z-40">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-6 py-4 rounded-t-2xl">
-            <h3 className="font-semibold">CocoVenus Support</h3>
-            <p className="text-sm text-white/80">Ch˙ng tÙi thu?ng tr? l?i trong v‡i ph˙t</p>
-          </div>
-
-          {/* Messages */}
-          <div className="h-64 overflow-y-auto p-4 space-y-4">
-            {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}>
-                <div
-                  className={`max-w-xs px-4 py-2 rounded-lg ${
-                    msg.type === "user"
-                      ? "bg-brand-primary text-white"
-                      : "bg-brand-border text-brand-text"
-                  }`}
-                >
-                  {msg.text}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Input */}
-          <div className="border-t border-brand-border p-4 flex gap-2">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Nh?p tin nh?n..."
-              className="flex-1 px-4 py-2 rounded-lg border border-brand-border bg-white text-brand-text placeholder-brand-text-muted focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20"
-            />
-            <button
-              onClick={handleSend}
-              className="px-4 py-2 rounded-lg bg-brand-primary text-white hover:bg-brand-primary-dark transition-colors"
-            >
-              ?
-            </button>
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
 }
-
-

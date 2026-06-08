@@ -1,92 +1,36 @@
-import { Award, Users, Globe, Zap } from "lucide-react";
+import { motion } from 'motion/react';
 
 export default function Heritage() {
   return (
-    <section id="heritage" className="py-20 md:py-32 bg-white relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 right-0 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl" />
-      </div>
+    <section id="heritage" className="py-24 bg-brand-green text-brand-cream relative">
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-brand-green-light/40 via-transparent to-transparent pointer-events-none"></div>
+      
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <motion.div
+           initial={{ opacity: 0, scale: 0.9 }}
+           whileInView={{ opacity: 1, scale: 1 }}
+           viewport={{ once: true }}
+           className="w-20 h-20 bg-brand-cream rounded-full mx-auto mb-8 flex items-center justify-center p-2 shadow-xl"
+        >
+          {/* Mock Logo representing Thorakao legacy */}
+           <div className="w-full h-full border border-brand-green rounded-full flex flex-col items-center justify-center text-brand-green">
+             <span className="font-serif text-[10px] font-bold leading-none mb-0.5">EST</span>
+             <span className="font-serif text-lg font-bold leading-none">1961</span>
+           </div>
+        </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left - Content */}
-          <div className="animate-fade-in-up">
-            <span className="inline-block glass px-4 py-2 rounded-full text-sm font-medium text-brand-primary mb-4 border border-brand-primary/20">
-              C�u Chuy?n C?a Ch�ng T�i
-            </span>
+        <h2 className="font-serif text-3xl md:text-5xl font-bold mb-8 text-brand-gold">
+          Thorakao — Hơn 60 Năm Vì Vẻ Đẹp Việt
+        </h2>
+        
+        <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-12">
+          Được thành lập từ năm 1961, Công ty Lan Hảo (Thorakao) đã không ngừng nghiên cứu và ứng dụng những tinh hoa từ thảo mộc thiên nhiên Việt Nam vào các sản phẩm chăm sóc sắc đẹp. CocoVenus là sự kết tinh của truyền thống 60 năm và công nghệ hiện đại, mang đến giải pháp làm đẹp an toàn, hiệu quả, đậm đà bản sắc Việt.
+        </p>
 
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-text mb-6 leading-tight">
-              H�nh Tr�nh T?
-              <span className="block bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                �am M� �?n Hi?n Th?c
-              </span>
-            </h2>
-
-            <p className="text-lg text-brand-text-muted mb-6 leading-relaxed">
-              CocoVenus du?c th�nh l?p v?i m?t m?c d�ch don gi?n: t?o ra nh?ng s?n ph?m cham s�c da t? nhi�n, hi?u qu? v� gi� c? ph?i chang cho m?i ngu?i.
-            </p>
-
-            <p className="text-lg text-brand-text-muted mb-8 leading-relaxed">
-              Hon 10 nam qua, ch�ng t�i d� nghi�n c?u, ph�t tri?n v� ho�n thi?n c�ng th?c c?a m�nh d? mang l?i k?t qu? t?t nh?t.
-            </p>
-
-            {/* Timeline */}
-            <div className="space-y-4">
-              {[
-                { year: "2014", text: "Th�nh l?p CocoVenus v?i ni?m dam m� t?o m? ph?m t? nhi�n" },
-                { year: "2017", text: "�?t ch?ng nh?n FDA v� b?t d?u b�n qu?c t?" },
-                { year: "2020", text: "Ph?c v? hon 10,000 kh�ch h�ng tr�n to�n th? gi?i" },
-                { year: "Nay", text: "Tr? th�nh thuong hi?u cham s�c da h�ng d?u ? Vi?t Nam" }
-              ].map((milestone, i) => (
-                <div key={i} className="flex gap-4 items-start">
-                  <div className="w-2 h-2 rounded-full bg-brand-primary mt-2 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold text-brand-primary text-sm">{milestone.year}</p>
-                    <p className="text-brand-text-muted text-sm mt-1">{milestone.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right - Image/Video Area */}
-          <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            <div className="relative">
-              {/* Main image area */}
-              <div className="glass rounded-3xl p-8 border border-brand-border overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-brand-primary/20 via-brand-secondary/10 to-brand-tertiary/20 rounded-2xl flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">??</div>
-                    <p className="text-brand-text-muted font-medium">S?n Ph?m T? Nhi�n 100%</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Stats overlay */}
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                {[
-                  { icon: Users, label: "Kh�ch H�ng", value: "50K+" },
-                  { icon: Globe, label: "Qu?c Gia", value: "25+" },
-                  { icon: Award, label: "Gi?i Thu?ng", value: "8+" },
-                  { icon: Zap, label: "S?n Ph?m", value: "20+" }
-                ].map((stat, i) => {
-                  const IconComponent = stat.icon;
-                  return (
-                    <div key={i} className="glass rounded-xl p-4 border border-brand-border text-center">
-                      <IconComponent className="w-6 h-6 text-brand-primary mx-auto mb-2" />
-                      <p className="font-bold text-brand-primary text-lg">{stat.value}</p>
-                      <p className="text-xs text-brand-text-muted">{stat.label}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
+        <blockquote className="font-serif italic text-2xl md:text-3xl text-brand-gold border-y border-brand-gold/30 py-8 mx-auto inline-block">
+          "Trắng Mịn Và Đẹp Như Thiên Thần"
+        </blockquote>
       </div>
     </section>
   );
 }
-
-

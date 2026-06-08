@@ -1,121 +1,63 @@
-import { CheckCircle } from "lucide-react";
-
-const steps = [
-  {
-    number: "01",
-    title: "L‡m S?ch",
-    description: "R?a s?ch m?t v?i nu?c ?m d? m? l? ch‚n lÙng"
-  },
-  {
-    number: "02",
-    title: "Toner",
-    description: "Thoa toner lÍn to‡n b? m?t b?ng cotton ho?c tay"
-  },
-  {
-    number: "03",
-    title: "Serum",
-    description: "¡p d?ng serum lÍn c·c v˘ng c?n cham sÛc"
-  },
-  {
-    number: "04",
-    title: "Kem Du?ng",
-    description: "K?t th˙c b?ng kem du?ng d? khÛa d? ?m"
-  }
-];
+import { Droplets, Hand, Timer } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function HowToUse() {
+  const steps = [
+    {
+      icon: Droplets,
+      num: 1,
+      title: "L√†m ∆∞·ªõt t√≥c",
+      desc: "L√†m ∆∞·ªõt t√≥c ho√†n to√†n b·∫±ng n∆∞·ªõc ·∫•m ƒë·ªÉ m·ªü bi·ªÉu b√¨ t√≥c."
+    },
+    {
+      icon: Hand,
+      num: 2,
+      title: "G·ªôi v√† Massage",
+      desc: "Thoa d·∫ßu g·ªôi CocoVenus, massage nh·∫π nh√†ng da ƒë·∫ßu t·ª´ 2‚Äì3 ph√∫t."
+    },
+    {
+      icon: Timer,
+      num: 3,
+      title: "D√πng d·∫ßu x·∫£",
+      desc: "X·∫£ s·∫°ch b·ªçt. Thoa d·∫ßu x·∫£ l√™n ph·∫ßn th√¢n v√† ng·ªçn t√≥c, gi·ªØ 1‚Äì2 ph√∫t r·ªìi x·∫£ l·∫°i."
+    }
+  ];
+
   return (
-    <section id="how-to-use" className="py-20 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="inline-block glass px-4 py-2 rounded-full text-sm font-medium text-brand-primary mb-4 border border-brand-primary/20">
-            Hu?ng D?n S? D?ng
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-text mb-4">
-            Quy TrÏnh 4 Bu?c –on Gi?n
-          </h2>
-          <p className="text-lg text-brand-text-muted max-w-2xl mx-auto">
-            Ch? c?n 5 ph˙t m?i ng‡y d? cÛ l‡n da kh?e m?nh v‡ r?ng r?
-          </p>
+    <section className="py-24 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Chu Tr√¨nh ChƒÉm S√≥c T√≥c 3 B∆∞·ªõc</h2>
+          <p className="text-brand-brown/70 max-w-2xl mx-auto">Hi·ªáu qu·∫£ t·ªët nh·∫•t khi s·ª≠ d·ª•ng tr·ªçn b·ªô s·∫£n ph·∫©m CocoVenus.</p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid md:grid-cols-4 gap-6 mb-16">
+        <div className="flex flex-col md:flex-row justify-center items-start gap-8 md:gap-4 relative max-w-5xl mx-auto">
+          {/* Connecting Line (Desktop) */}
+          <div className="hidden md:absolute top-12 left-[15%] right-[15%] h-px bg-brand-green/20 border-t border-dashed"></div>
+
           {steps.map((step, index) => (
-            <div
-              key={index}
-              className="group animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+              viewport={{ once: true }}
+              key={index} 
+              className="flex-1 flex flex-col items-center text-center relative z-10 w-full"
             >
-              <div className="h-full glass rounded-2xl p-8 border border-brand-border transition-all duration-300 hover:shadow-lg hover:-translate-y-2 text-center">
-                {/* Number */}
-                <div className="text-5xl font-bold text-brand-primary/20 mb-2">
-                  {step.number}
+              <div className="w-24 h-24 bg-brand-cream rounded-full border-4 border-white shadow-lg flex items-center justify-center mb-6 relative group hover:scale-105 transition-transform duration-300">
+                <div className="absolute -top-3 -right-3 w-8 h-8 bg-brand-gold text-white font-bold rounded-full flex items-center justify-center shadow-md">
+                  {step.num}
                 </div>
-
-                {/* Icon Circle */}
-                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 flex items-center justify-center group-hover:from-brand-primary/40 group-hover:to-brand-secondary/40 transition-all">
-                  <CheckCircle className="w-8 h-8 text-brand-primary" />
-                </div>
-
-                {/* Content */}
-                <h3 className="font-semibold text-lg text-brand-text mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-brand-text-muted">
-                  {step.description}
-                </p>
+                <step.icon className="w-10 h-10 text-brand-green group-hover:text-brand-gold transition-colors" />
               </div>
-            </div>
+              <h3 className="font-bold text-lg mb-2">{step.title}</h3>
+              <p className="text-brand-brown/70 text-sm px-4">{step.desc}</p>
+            </motion.div>
           ))}
-        </div>
-
-        {/* Tips Section */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="glass rounded-2xl p-8 border border-brand-border animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <h3 className="font-semibold text-lg text-brand-text mb-4 flex items-center gap-2">
-              <span className="text-2xl">??</span>
-              M?o –? CÛ K?t Qu? T?t Nh?t
-            </h3>
-            <ul className="space-y-3">
-              {[
-                "S? d?ng h‡ng ng‡y d? cÛ k?t qu? t?i uu",
-                "¡p d?ng bu?i s·ng v‡ bu?i t?i",
-                "KhÙng quÍn ch?ng n?ng v‡o ban ng‡y",
-                "U?ng d? nu?c d? c?p ?m t? bÍn trong"
-              ].map((tip, i) => (
-                <li key={i} className="flex gap-2 text-sm text-brand-text-muted">
-                  <span className="text-brand-primary font-bold">?</span>
-                  {tip}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="glass rounded-2xl p-8 border border-brand-border animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-            <h3 className="font-semibold text-lg text-brand-text mb-4 flex items-center gap-2">
-              <span className="text-2xl">??</span>
-              –i?u C?n Tr·nh
-            </h3>
-            <ul className="space-y-3">
-              {[
-                "KhÙng ·p d?ng qu· nhi?u s?n ph?m c˘ng l˙c",
-                "Tr·nh ti?p x˙c v?i m?t",
-                "KhÙng s? d?ng trÍn da b? t?n thuong",
-                "Ng?ng s? d?ng n?u cÛ d?u hi?u kÌch ?ng"
-              ].map((warning, i) => (
-                <li key={i} className="flex gap-2 text-sm text-brand-text-muted">
-                  <span className="text-brand-primary-dark font-bold">?</span>
-                  {warning}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </section>
   );
 }
-
-

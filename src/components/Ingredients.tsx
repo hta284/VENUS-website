@@ -1,127 +1,52 @@
-import { Leaf, Droplet, Sparkles, Shield } from "lucide-react";
-
-const ingredients = [
-  {
-    icon: Leaf,
-    name: "Chi?t Xu?t C�y L� H?i",
-    benefits: "Du?ng ?m s�u, l�m d?u da",
-    color: "from-green-400 to-green-600"
-  },
-  {
-    icon: Droplet,
-    name: "Vitamin C Tinh Khi?t",
-    benefits: "L�m s�ng da, ch?ng oxy h�a",
-    color: "from-yellow-400 to-yellow-600"
-  },
-  {
-    icon: Sparkles,
-    name: "Hyaluronic Acid",
-    benefits: "Gi? d? ?m, t�i t?o da",
-    color: "from-blue-400 to-blue-600"
-  },
-  {
-    icon: Shield,
-    name: "Niacinamide",
-    benefits: "C�n b?ng d?u, se kh�t l? ch�n l�ng",
-    color: "from-pink-400 to-pink-600"
-  },
-  {
-    icon: Leaf,
-    name: "Peptides T? Nhi�n",
-    benefits: "Ch?ng l�o h�a, tang d�n h?i",
-    color: "from-purple-400 to-purple-600"
-  },
-  {
-    icon: Droplet,
-    name: "Tinh D?u Huong Hoa",
-    benefits: "Thom d? ch?u, d? da",
-    color: "from-rose-400 to-rose-600"
-  }
-];
+import { motion } from 'motion/react';
 
 export default function Ingredients() {
   return (
-    <section className="py-20 md:py-32 bg-brand-background relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl" />
-      </div>
-
+    <section className="py-20 bg-brand-cream border-y border-brand-green/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="inline-block glass px-4 py-2 rounded-full text-sm font-medium text-brand-primary mb-4 border border-brand-primary/20">
-            Th�nh Ph?n Ch�nh
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-text mb-4">
-            C�ng Th?c Ho�n H?o T?
-            <span className="block bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-              T? Nhi�n & Khoa H?c
-            </span>
-          </h2>
-          <p className="text-lg text-brand-text-muted max-w-2xl mx-auto">
-            M?i th�nh ph?n du?c ch?n l?c d? mang l?i hi?u qu? t?i da
-          </p>
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4">Tinh Túy Từ Thiên Nhiên</h2>
+          <p className="text-brand-brown/70 max-w-2xl mx-auto text-lg">Sự hòa quyện của hai nguyên liệu truyền thống trong một công thức hiện đại.</p>
         </div>
 
-        {/* Ingredients Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ingredients.map((ingredient, index) => {
-            const IconComponent = ingredient.icon;
-            return (
-              <div
-                key={index}
-                className="group animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="h-full glass rounded-2xl p-6 border border-brand-border transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${ingredient.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <IconComponent className="w-7 h-7 text-white" />
-                  </div>
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Ingredient 1: Coconut */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left"
+          >
+            <div className="w-32 h-32 shrink-0 bg-brand-green/10 rounded-full flex items-center justify-center text-5xl">
+              🥥
+            </div>
+            <div>
+              <h3 className="font-serif text-2xl font-bold mb-3 text-brand-green">Dầu Dừa Bến Tre</h3>
+              <p className="text-brand-brown/80 leading-relaxed text-lg">
+                Giàu axit lauric tự nhiên, dầu dừa Bến Tre thẩm thấu sâu vào lõi tóc, giúp <strong>dưỡng ẩm sâu, phục hồi tóc hư tổn</strong> và tạo màng bảo vệ tóc khỏi các tác nhân gây hại từ môi trường.
+              </p>
+            </div>
+          </motion.div>
 
-                  {/* Content */}
-                  <h3 className="font-semibold text-lg text-brand-text mb-2">
-                    {ingredient.name}
-                  </h3>
-                  <p className="text-sm text-brand-text-muted leading-relaxed">
-                    {ingredient.benefits}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Certifications */}
-        <div className="mt-20 pt-12 border-t border-brand-border">
-          <div className="text-center mb-12 animate-fade-in-up">
-            <h3 className="font-semibold text-2xl text-brand-text mb-2">
-              Ch?ng Nh?n & Ki?m �?nh
-            </h3>
-            <p className="text-brand-text-muted">
-              T?t c? s?n ph?m d?u du?c ki?m test v� ch?ng nh?n b?i c�c co quan uy t�n
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { name: "FDA Approved", icon: "?" },
-              { name: "Cruelty-Free", icon: "??" },
-              { name: "Vegan Friendly", icon: "??" },
-              { name: "Dermatologist Tested", icon: "?????" }
-            ].map((cert, i) => (
-              <div key={i} className="text-center glass rounded-xl p-6 border border-brand-border animate-fade-in-up" style={{ animationDelay: `${0.4 + i * 0.1}s` }}>
-                <div className="text-3xl mb-2">{cert.icon}</div>
-                <p className="font-medium text-sm text-brand-text">{cert.name}</p>
-              </div>
-            ))}
-          </div>
+          {/* Ingredient 2: Pomelo */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row-reverse items-center sm:items-start gap-6 text-center sm:text-right"
+          >
+            <div className="w-32 h-32 shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-5xl">
+              🍊
+            </div>
+            <div>
+              <h3 className="font-serif text-2xl font-bold mb-3 text-orange-600">Tinh Dầu Bưởi Thuần Việt</h3>
+              <p className="text-brand-brown/80 leading-relaxed text-lg">
+                Chứa hàm lượng Vitamin C tự nhiên cao, tinh dầu bưởi giúp <strong>làm sạch da đầu, kháng khuẩn, giảm gàu</strong> và đặc biệt hiệu quả trong việc <strong>kích thích nang tóc phát triển</strong>.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-
-

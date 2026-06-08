@@ -1,110 +1,71 @@
-import { Heart, Facebook, Instagram, Twitter, Mail } from "lucide-react";
+import { Facebook, Instagram, Music2 } from 'lucide-react';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-brand-text text-white relative overflow-hidden">
-      {/* Decorative gradient */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl" />
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-brand-primary rounded-full" />
-              <span className="font-serif text-xl font-bold">CocoVenus</span>
+    <footer className="bg-brand-brown text-brand-cream py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-brand-cream/10 pb-12 mb-8">
+          
+          <div className="md:col-span-1">
+            <div className="font-serif text-3xl font-bold tracking-widest text-brand-gold mb-4">
+              VENUS
             </div>
-            <p className="text-white/70 text-sm leading-relaxed">
-              S?n ph?m cham s�c da cao c?p t? c�c th�nh ph?n t? nhi�n t?t nh?t.
-            </p>
-            <div className="flex gap-4 mt-6">
-              {[
-                { icon: Facebook, label: "Facebook" },
-                { icon: Instagram, label: "Instagram" },
-                { icon: Twitter, label: "Twitter" },
-                { icon: Mail, label: "Email" }
-              ].map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center hover:bg-brand-primary/40 transition-colors"
-                    aria-label={social.label}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Links Sections */}
-          {[
-            {
-              title: "S?n Ph?m",
-              links: ["T?t C? S?n Ph?m", "Serum", "Kem Du?ng", "Toner"]
-            },
-            {
-              title: "C�ng Ty",
-              links: ["V? Ch�ng T�i", "Blog", "C�ng Vi?c", "Li�n H?"]
-            },
-            {
-              title: "H? Tr?",
-              links: ["C�u H?i Thu?ng G?p", "Tr? L?i H�ng", "V?n Chuy?n", "Ch�nh S�ch"]
-            }
-          ].map((section) => (
-            <div key={section.title}>
-              <h4 className="font-semibold mb-4">{section.title}</h4>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-white/10 py-8">
-          {/* Payment Methods */}
-          <div className="mb-8">
-            <p className="text-xs text-white/60 uppercase tracking-widest font-medium mb-4">
-              Phuong Th?c Thanh To�n
+            <p className="text-brand-cream/70 text-sm leading-relaxed mb-6">
+              CocoVenus by Thorakao — Công ty Lan Hảo.<br/>
+              Khơi dậy vẻ đẹp tự nhiên từ thảo mộc Việt Nam.
             </p>
             <div className="flex gap-4">
-              {["?? Th? T�n D?ng", "?? Chuy?n Kho?n", "?? V� �i?n T?", "? Thanh To�n Sau"].map((method) => (
-                <div key={method} className="px-4 py-2 rounded-lg bg-white/10 text-xs text-white/70">
-                  {method}
-                </div>
-              ))}
+              <a href="#" className="w-10 h-10 rounded-full bg-brand-cream/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-brown transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-brand-cream/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-brown transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-brand-cream/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-brown transition-colors">
+                <Music2 className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
-          {/* Bottom */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-white/60">
-              � {currentYear} CocoVenus. T?t c? quy?n du?c b?o luu.
-            </p>
-            <div className="flex items-center gap-2 text-sm text-white/60">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-brand-primary fill-brand-primary" />
-              <span>by Thorakao Team</span>
-            </div>
+          <div>
+            <h4 className="font-bold mb-6 uppercase tracking-wider text-brand-gold text-sm">Liên Kết</h4>
+            <ul className="space-y-4 text-sm text-brand-cream/70">
+              <li><a href="#" className="hover:text-brand-gold transition-colors">Về chúng tôi</a></li>
+              <li><a href="#" className="hover:text-brand-gold transition-colors">Sản phẩm CocoVenus</a></li>
+              <li><a href="#" className="hover:text-brand-gold transition-colors">Cửa hàng</a></li>
+              <li><a href="#" className="hover:text-brand-gold transition-colors">Tin tức & Khuyến mãi</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-6 uppercase tracking-wider text-brand-gold text-sm">Hỗ Trợ</h4>
+            <ul className="space-y-4 text-sm text-brand-cream/70">
+              <li><a href="#" className="hover:text-brand-gold transition-colors">Liên hệ</a></li>
+              <li><a href="#" className="hover:text-brand-gold transition-colors">Chính sách giao hàng</a></li>
+              <li><a href="#" className="hover:text-brand-gold transition-colors">Đổi trả & Hoàn tiền</a></li>
+              <li><a href="#" className="hover:text-brand-gold transition-colors">Chính sách bảo mật</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-6 uppercase tracking-wider text-brand-gold text-sm">Liên Hệ</h4>
+            <ul className="space-y-4 text-sm text-brand-cream/70">
+              <li><span className="text-white block mb-1">Hotline:</span> 0123 456 789 (Zalo)</li>
+              <li><span className="text-white block mb-1">Email:</span> cskh@thorakao.vn</li>
+              <li><span className="text-white block mb-1">Địa chỉ:</span> 241Bis Cách Mạng Tháng 8, P.4, Q.3, TP.HCM</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-cream/50">
+          <p>&copy; 2026 Thorakao. All rights reserved.</p>
+          <div className="flex gap-4">
+            <a href="#" className="hover:text-white">Terms</a>
+            <a href="#" className="hover:text-white">Privacy</a>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-
-

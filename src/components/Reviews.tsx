@@ -1,111 +1,77 @@
-import { Star, Quote } from "lucide-react";
-
-const reviewsData = [
-  {
-    name: "Nguy?n H� Linh",
-    role: "Beauty Influencer",
-    content: "��y l� s?n ph?m t?t nh?t m� t�i d� t?ng s? d?ng. Da c?a t�i kh?e hon, s�ng hon ch? sau 2 tu?n!",
-    rating: 5,
-    image: "?????"
-  },
-  {
-    name: "Tr?n Minh Hoa",
-    role: "B�c Si Da Li?u",
-    content: "T�i gi?i thi?u s?n ph?m n�y cho t?t c? b?nh nh�n c?a m�nh. C�ng th?c an to�n v� hi?u qu? l�m s�ng d� du?c ch?ng minh.",
-    rating: 5,
-    image: "?????"
-  },
-  {
-    name: "L� Qu?nh Anh",
-    role: "Nh�n Vi�n C�ng Ty",
-    content: "Gi� c? h?p l�, ch?t lu?ng cao. T�i d� mua l?i nhi?u l?n v� lu�n r?t h�i l�ng v?i k?t qu?.",
-    rating: 5,
-    image: "?????"
-  },
-  {
-    name: "Ph?m Thu Huong",
-    role: "M? B?m",
-    content: "S?n ph?m n�y kh�ng g�y k�ch ?ng da, ngay c? cho da nh?y c?m c?a t�i. R?t an t�m khi s? d?ng.",
-    rating: 5,
-    image: "????????"
-  }
-];
+import { Star } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function Reviews() {
+  const reviews = [
+    {
+      name: "Nguyễn Thị Lan",
+      role: "Nhân viên văn phòng",
+      text: "Tóc mình trước đây rụng rất nhiều, dùng combo CocoVenus khoảng 1 tháng thấy tóc con mọc lởm chởm luôn. Mùi cũng rất thơm và lưu hương lâu.",
+      initials: "L"
+    },
+    {
+      name: "Trần Minh Châu",
+      role: "Mẹ bỉm sữa",
+      text: "Thích nhất là thành phần tự nhiên an toàn. Gội xong tóc mềm mượt, không bị bết dính. Giá cả lại quá hợp lý cho 1 sản phẩm chất lượng như vậy.",
+      initials: "C"
+    },
+    {
+      name: "Lê Thu Hương",
+      role: "Sinh viên",
+      text: "Đúng là Thorakao không bao giờ làm mình thất vọng. Dầu xả gỡ rối cực tốt, mùi hương bưởi dừa kết hợp siêu thư giãn lúc gội đầu.",
+      initials: "H"
+    }
+  ];
+
   return (
-    <section id="reviews" className="py-20 md:py-32 bg-white">
+    <section id="reviews" className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="inline-block glass px-4 py-2 rounded-full text-sm font-medium text-brand-primary mb-4 border border-brand-primary/20">
-            Nh?ng Ph?n H?i T? Kh�ch H�ng
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-text mb-4">
-            T?i Sao Kh�ch H�ng Y�u Th�ch
-            <span className="block bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-              CocoVenus
-            </span>
-          </h2>
+        
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-4xl font-bold mb-4">Khách Hàng Nói Gì?</h2>
+          <div className="flex flex-col items-center mt-2">
+            <div className="flex gap-1 mb-2">
+              {[1, 2, 3, 4, 5].map(i => (
+                <Star key={i} className="w-6 h-6 text-brand-gold fill-brand-gold" />
+              ))}
+            </div>
+            <p className="font-bold text-lg">10,000+ <span className="font-normal text-brand-brown/70">khách hàng tin dùng</span></p>
+          </div>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reviewsData.map((review, index) => (
-            <div
+        <div className="grid md:grid-cols-3 gap-8">
+          {reviews.map((review, index) => (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.15 }}
+              viewport={{ once: true }}
               key={index}
-              className="group animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="bg-brand-cream/40 p-8 rounded-2xl border border-brand-green/10 relative"
             >
-              <div className="h-full glass rounded-2xl p-6 border border-brand-border transition-all duration-300 hover:shadow-lg hover:-translate-y-2 relative">
-                {/* Quote Icon */}
-                <Quote className="w-6 h-6 text-brand-primary/30 absolute top-4 right-4" />
-
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-brand-accent text-brand-accent" />
-                  ))}
+              <div className="flex gap-1 mb-6 text-brand-gold">
+                {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-4 h-4 fill-brand-gold" />)}
+              </div>
+              
+              <blockquote className="text-brand-brown/80 mb-8 italic">
+                "{review.text}"
+              </blockquote>
+              
+              <div className="flex items-center gap-4 mt-auto">
+                <div className="w-12 h-12 bg-brand-green text-white rounded-full flex items-center justify-center font-serif text-xl font-bold">
+                  {review.initials}
                 </div>
-
-                {/* Comment */}
-                <p className="text-sm text-brand-text leading-relaxed mb-6">
-                  "{review.content}"
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-brand-border">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 flex items-center justify-center text-lg">
-                    {review.image}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-brand-text">{review.name}</p>
-                    <p className="text-xs text-brand-text-muted">{review.role}</p>
+                <div>
+                  <div className="font-bold">{review.name}</div>
+                  <div className="text-sm border flex items-center gap-1 border-brand-green text-brand-green px-2 py-0.5 rounded text-xs mt-1 bg-brand-green/5 w-fit">
+                    Đã mua combo
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Trust Indicators */}
-        <div className="mt-20 grid md:grid-cols-3 gap-8 text-center">
-          {[
-            { value: "4.9/5", label: "��nh Gi� Trung B�nh", desc: "T? 2,500+ d�nh gi�" },
-            { value: "98%", label: "Kh�ch H�ng Quay L?i", desc: "Mua l?i s?n ph?m" },
-            { value: "30 Ng�y", label: "B?o H�nh", desc: "Ho�n l?i ti?n 100%" }
-          ].map((indicator, i) => (
-            <div key={i} className="animate-fade-in-up" style={{ animationDelay: `${0.4 + i * 0.1}s` }}>
-              <div className="glass rounded-2xl p-8 border border-brand-border">
-                <p className="text-3xl font-bold text-brand-primary mb-2">{indicator.value}</p>
-                <p className="font-semibold text-brand-text mb-1">{indicator.label}</p>
-                <p className="text-sm text-brand-text-muted">{indicator.desc}</p>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-

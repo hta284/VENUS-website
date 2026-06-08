@@ -1,111 +1,69 @@
-import { Zap, Leaf, Shield, Sparkles } from "lucide-react";
-
-const benefits = [
-  {
-    icon: Sparkles,
-    title: "K?t Qu? Nhanh Ch�ng",
-    description: "Nh�n th?y s? c?i thi?n trong v�ng 7 ng�y ho?c ho�n l?i ti?n"
-  },
-  {
-    icon: Leaf,
-    title: "100% T? Nhi�n",
-    description: "Kh�ng ch?a h�a ch?t d?c h?i, du?c ch?ng nh?n t? nhi�n"
-  },
-  {
-    icon: Shield,
-    title: "An To�n & Ki?m Ch?ng",
-    description: "�u?c ki?m nghi?m b?i chuy�n gia da li?u, an to�n cho m?i lo?i da"
-  },
-  {
-    icon: Zap,
-    title: "C�ng Ngh? Ti�n Ti?n",
-    description: "K?t h?p c�ng th?c truy?n th?ng v?i khoa h?c hi?n d?i"
-  }
-];
+import { Leaf, Droplets, Flower2, Sparkles, Award, Receipt } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function Benefits() {
+  const benefits = [
+    {
+      icon: Leaf,
+      title: "Thiên Nhiên Bản Địa",
+      description: "Dầu dừa Bến Tre — nguồn nguyên liệu thuần Việt chất lượng cao"
+    },
+    {
+      icon: Droplets,
+      title: "Dưỡng Ẩm Chuyên Sâu",
+      description: "Phục hồi tóc hư tổn, giữ ẩm suốt 24 giờ"
+    },
+    {
+      icon: Flower2,
+      title: "Trị Gàu & Kích Mọc",
+      description: "Tinh dầu bưởi tự nhiên giảm gàu, kích thích chân tóc"
+    },
+    {
+      icon: Sparkles,
+      title: "An Toàn Cho Mọi Loại Tóc",
+      description: "Lành tính, không chứa hóa chất độc hại, phù hợp sử dụng hàng ngày"
+    },
+    {
+      icon: Award,
+      title: "Thương Hiệu Uy Tín",
+      description: "Thorakao — Hơn 60 năm đồng hành chăm sóc vẻ đẹp người Việt"
+    },
+    {
+      icon: Receipt,
+      title: "Giá Cả Phải Chăng",
+      description: "Chất lượng làm đẹp cao cấp với mức giá hợp lý cho mọi gia đình"
+    }
+  ];
+
   return (
-    <section id="benefits" className="py-20 md:py-32 bg-brand-background relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl -z-10" />
-
+    <section id="benefits" className="py-20 bg-brand-cream border-t border-brand-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="inline-block glass px-4 py-2 rounded-full text-sm font-medium text-brand-primary mb-4 border border-brand-primary/20">
-            T?i Sao Ch?n CocoVenus
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-text mb-4">
-            C�ng D?ng & L?i �ch
-          </h2>
-          <p className="text-lg text-brand-text-muted max-w-2xl mx-auto">
-            Kh�m ph� nh?ng l?i �ch tuy?t v?i m� s?n ph?m c?a ch�ng t�i mang l?i
-          </p>
+        <div className="text-center mb-16">
+          <span className="text-brand-green font-bold text-sm tracking-wider uppercase mb-2 block">Tại sao chọn</span>
+          <h2 className="font-serif text-3xl md:text-5xl font-bold mb-6">CocoVenus by Thorakao?</h2>
         </div>
 
-        {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((benefit, index) => {
-            const IconComponent = benefit.icon;
-            return (
-              <div
-                key={index}
-                className="group animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <div className="h-full glass rounded-2xl p-8 border border-brand-border transition-all duration-300 hover:shadow-lg hover:-translate-y-2 text-center">
-                  {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 mb-6 group-hover:from-brand-primary/40 group-hover:to-brand-secondary/40 transition-all duration-300">
-                    <IconComponent className="w-8 h-8 text-brand-primary group-hover:text-brand-primary-dark transition-colors" />
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="font-semibold text-lg text-brand-text mb-3">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-brand-text-muted leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {benefits.map((benefit, index) => (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              key={index} 
+              className="bg-white p-8 rounded-2xl shadow-sm border border-brand-green/5 hover:border-brand-green/20 hover:shadow-md transition-all group"
+            >
+              <div className="w-14 h-14 bg-brand-green/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                <benefit.icon className="w-7 h-7 text-brand-green group-hover:text-white" />
               </div>
-            );
-          })}
-        </div>
-
-        {/* Detailed Info */}
-        <div className="mt-20 grid md:grid-cols-3 gap-8">
-          {[
-            {
-              number: "10+",
-              title: "Nam Kinh Nghi?m",
-              desc: "Hon m?t th?p k? chuy�n nghi?p trong ng�nh cham s�c da"
-            },
-            {
-              number: "50K+",
-              title: "Kh�ch H�ng T?ng",
-              desc: "H�ng ch?c ngh�n kh�ch h�ng h�i l�ng tr�n kh?p th? gi?i"
-            },
-            {
-              number: "99%",
-              title: "T? L? H�i L�ng",
-              desc: "G?n nhu t?t c? kh�ch h�ng s? gi?i thi?u cho b?n b�"
-            }
-          ].map((stat, i) => (
-            <div key={i} className="text-center animate-fade-in-up" style={{ animationDelay: `${0.3 + i * 0.1}s` }}>
-              <div className="inline-block glass rounded-2xl p-8 border border-brand-border w-full">
-                <p className="font-serif text-4xl md:text-5xl font-bold text-brand-primary mb-2">
-                  {stat.number}
-                </p>
-                <h3 className="font-semibold text-brand-text mb-2">{stat.title}</h3>
-                <p className="text-sm text-brand-text-muted">{stat.desc}</p>
-              </div>
-            </div>
+              <h3 className="font-serif text-xl font-bold mb-3 text-brand-brown">{benefit.title}</h3>
+              <p className="text-brand-brown/70 leading-relaxed">
+                {benefit.description}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-
