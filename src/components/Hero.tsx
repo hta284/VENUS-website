@@ -59,17 +59,8 @@ export default function Hero() {
           >
             <div className="aspect-[4/5] md:aspect-square bg-gradient-to-tr from-brand-green to-brand-green-light rounded-[2rem] overflow-hidden shadow-2xl relative">
               {/* Abstract bottle representations via css for placeholder */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-end gap-4 h-[70%]">
-                {/* Shampoo */}
-                <div className="w-24 md:w-32 h-[90%] bg-brand-cream/10 backdrop-blur-md rounded-t-3xl border border-white/20 shadow-inner relative flex flex-col justify-end pb-8 items-center">
-                   <div className="absolute top-0 -mt-6 w-8 h-12 bg-zinc-800 rounded-t-md mx-auto left-0 right-0"></div>
-                   <span className="font-serif text-white/90 font-bold text-center leading-tight">Dầu<br/>Gội</span>
-                </div>
-                {/* Conditioner */}
-                <div className="w-24 md:w-32 h-[75%] bg-brand-cream/10 backdrop-blur-md rounded-t-3xl border border-white/20 shadow-inner relative flex flex-col justify-end pb-8 items-center">
-                   <div className="absolute top-0 -mt-6 w-8 h-10 w-12 bg-brand-cream rounded-t-md mx-auto left-0 right-0 shadow-sm border border-black/10"></div>
-                   <span className="font-serif text-white/90 font-bold text-center leading-tight">Dầu<br/>Xả</span>
-                </div>
+              <div className="absolute inset-x-8 bottom-0 flex justify-center items-end max-h-[85%] pb-0">
+                <img src="/combo.png" alt="Venus Coco Combo" className="object-contain h-full w-auto max-w-full drop-shadow-2xl" referrerPolicy="no-referrer" />
               </div>
               
               {/* Botanical accents */}
