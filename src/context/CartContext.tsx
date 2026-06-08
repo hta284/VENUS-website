@@ -37,7 +37,7 @@ export const productsList: Product[] = [
     id: 'bundle',
     name: 'Combo Gội & Xả Venus Coco + Tặng Lược',
     description: 'Bộ đôi hoàn hảo x2 hiệu quả hồi sinh mái tóc + TẶNG KÈM Lược gỡ rối cao cấp từ Thorakao.',
-    price: 299000,
+    price: 279000,
     originalPrice: 328000,
     badge: 'TẶNG LƯỢC GỠ RỐI',
     ingredients: 'Trọn bộ 500ml x 2 + Quà tặng Lược gỡ rối',
